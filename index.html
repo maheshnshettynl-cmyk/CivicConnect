@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Report and track local community issues with CivicConnect.">
+  <title>CivicConnect | Community Issue Reporting</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CivicConnect home"><span class="brand-mark">C</span><span>Civic<span class="brand-light">Connect</span></span></a>
+    <nav aria-label="Main navigation">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#report">Report an issue</a>
+      <a href="#issues">Community reports</a>
+    </nav>
+    <a class="nav-cta" href="#report">+ New report</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR COMMUNITY, YOUR VOICE</div>
+        <h1>Small reports.<br><span>Better neighbourhoods.</span></h1>
+        <p>See a problem in your area? Report it, follow its progress, and help make your community a better place to live.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#report">Report a problem <span>↗</span></a>
+          <a class="text-btn" href="#issues">Explore reports ↓</a>
+        </div>
+        <div class="trust-note"><span class="avatar-stack"><i>✓</i><i>✓</i><i>✓</i></span> Every report helps build a better community.</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a clean, connected neighbourhood">
+        <div class="art-sun"></div><div class="art-cloud cloud-one"></div><div class="art-cloud cloud-two"></div>
+        <div class="art-hill hill-back"></div><div class="art-hill hill-front"></div>
+        <div class="art-building building-one"><b></b><b></b><b></b><b></b></div>
+        <div class="art-building building-two"><b></b><b></b><b></b><b></b></div>
+        <div class="art-house"><span class="roof"></span><span class="house-body"><i></i><i></i><em></em></span></div>
+        <div class="art-road"></div><div class="art-pin">✓</div>
+        <div class="art-label"><span class="live-dot"></span> Community first</div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="stats-section">
+      <div class="section-kicker">COMMUNITY OVERVIEW</div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-icon purple">▤</div><div><p>Total reports</p><strong id="totalCount">—</strong></div><span class="stat-caption">All submissions</span></article>
+        <article class="stat-card"><div class="stat-icon amber">◷</div><div><p>Pending</p><strong id="pendingCount">—</strong></div><span class="stat-caption">Awaiting attention</span></article>
+        <article class="stat-card"><div class="stat-icon blue">↗</div><div><p>In progress</p><strong id="progressCount">—</strong></div><span class="stat-caption">Being addressed</span></article>
+        <article class="stat-card"><div class="stat-icon green">✓</div><div><p>Resolved</p><strong id="resolvedCount">—</strong></div><span class="stat-caption">Completed reports</span></article>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <section id="report" class="panel report-panel">
+        <div class="panel-heading"><div><div class="section-kicker">MAKE A DIFFERENCE</div><h2>Report a local issue</h2><p>Tell us what needs attention in your neighbourhood.</p></div><span class="heading-icon">＋</span></div>
+        <form id="issueForm" novalidate>
+          <div class="field"><label for="title">Issue title <span>*</span></label><input id="title" name="title" type="text" maxlength="80" placeholder="e.g. Pothole near the bus stop" required><small class="field-error" id="titleError"></small></div>
+          <div class="form-row">
+            <div class="field"><label for="category">Category <span>*</span></label><select id="category" name="category" required><option value="">Select category</option><option>Roads</option><option>Garbage</option><option>Streetlights</option><option>Water supply</option><option>Drainage</option><option>Public safety</option><option>Other</option></select><small class="field-error" id="categoryError"></small></div>
+            <div class="field"><label for="location">Location <span>*</span></label><input id="location" name="location" type="text" maxlength="100" placeholder="Area, street or landmark" required><small class="field-error" id="locationError"></small></div>
+          </div>
+          <div class="field"><label for="description">Describe the issue <span>*</span></label><textarea id="description" name="description" rows="4" maxlength="500" placeholder="Add details that can help someone understand the problem..." required></textarea><div class="field-bottom"><small class="field-error" id="descriptionError"></small><small id="charCount">0 / 500</small></div></div>
+          <button class="submit-btn" id="submitBtn" type="submit"><span>Submit report</span><span>→</span></button>
+          <p class="privacy-note">Your report will be saved to the application server.</p>
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section id="issues" class="panel issues-panel">
+        <div class="panel-heading issues-heading"><div><div class="section-kicker">WHAT'S HAPPENING</div><h2>Community reports</h2><p>Explore issues reported by your neighbours.</p></div><span class="report-count" id="reportCount">0 reports</span></div>
+        <div class="toolbar"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search reports..." aria-label="Search reports"></label><select id="statusFilter" aria-label="Filter by status"><option value="All">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option></select></div>
+        <div id="issuesList" class="issues-list"><div class="loading-state"><span class="spinner"></span> Loading community reports...</div></div>
+        <div class="list-footer"><span id="listSummary">Connecting to server…</span><button id="refreshBtn" class="refresh-btn" type="button">↻ Refresh</button></div>
+      </section>
+    </section>
+    <section class="how-section">
+      <div><div class="section-kicker">HOW IT WORKS</div><h2>One report can start a change.</h2></div>
+      <div class="steps"><article><span>01</span><h3>Spot an issue</h3><p>Notice something in your neighbourhood that needs attention.</p></article><article><span>02</span><h3>Submit a report</h3><p>Share the category, location and a short description.</p></article><article><span>03</span><h3>Track progress</h3><p>Check whether the report is pending, in progress or resolved.</p></article></div>
+    </section>
+  </main>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>Civic<span class="brand-light">Connect</span></span></a><p>Built for better communities. <span>© 2026 CivicConnect Mini Project</span></p></footer>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sample-1001",
+    "title": "Large pothole near the bus stop",
+    "category": "Roads",
+    "location": "Main Road, Bengaluru",
+    "description": "A deep pothole is making it difficult for two-wheelers and cars to pass safely.",
+    "status": "In Progress",
+    "createdAt": "2026-10-28T09:30:00.000Z"
+  },
+  {
+    "id": "sample-1002",
+    "title": "Streetlight not working",
+    "category": "Streetlights",
+    "location": "2nd Cross, Bengaluru",
+    "description": "The streetlight has not been working for several nights.",
+    "status": "Pending",
+    "createdAt": "2026-10-27T16:15:00.000Z"
+  },
+  {
+    "id": "sample-1003",
+    "title": "Garbage collection missed",
+    "category": "Garbage",
+    "location": "Community Park, Bengaluru",
+    "description": "Garbage has accumulated beside the park entrance.",
+    "status": "Resolved",
+    "createdAt": "2026-10-25T11:00:00.000Z"
+  }
+]
